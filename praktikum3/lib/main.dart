@@ -38,6 +38,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _controllerCelcius = TextEditingController();
+  double _currentSliderValue = 0;
   //variabel berubah
   double _inputCelcius = 0;
   double _result = 0;
@@ -85,6 +86,17 @@ class _MyHomePageState extends State<MyHomePage> {
         margin: const EdgeInsets.all(8),
         child: Column(
           children: [
+            Slider(
+              value: _currentSliderValue,
+              max: 100,
+              divisions: 10,
+              onChanged: (double value) {
+                setState(() {
+                  _currentSliderValue = value;
+                  _controllerCelcius.text = _currentSliderValue.toString();
+                });
+              },
+            ),
             TextFormField(
               decoration: const InputDecoration(
                 hintText: ("Masukkan Suhu Dalam Celcius"), //hint text
